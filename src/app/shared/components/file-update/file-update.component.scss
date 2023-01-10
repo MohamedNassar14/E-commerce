@@ -1,0 +1,95 @@
+ .imageUpload{
+   height: 100px;
+   width: 100px;
+ }
+
+ .images-container {
+  display: block;
+  border-radius: 5px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin: 0px;
+  min-height: 100px;
+  max-width: 385px;
+ }
+
+ .image-element {
+   display: inline-block;
+   position: relative;
+   margin: 0 3px 3px 3px;
+ }
+
+ button.upload-close  {
+  position: absolute;
+  right: 5px;
+}
+
+.form-group {
+  display: inline-block;
+  margin: 0px;
+}
+
+.add-icon {
+  font-size: 54px;
+  top: 25px;
+  position: relative;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+}
+.add-icon:hover {
+  -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.custom-scrollbar-css::-webkit-scrollbar {
+  height: 10px;
+  background-color: transparent;
+}
+
+/* scrollbar track */
+.custom-scrollbar-css::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.custom-scrollbar-css::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* scrollbar handle */
+.custom-scrollbar-css::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #53606275;
+  background-image: linear-gradient(to top, #455d6259 0%, #232c3a6b 100%);
+}
+
+//Prev and Next Buttons
+span.carousel-control-next-icon, span.carousel-control-prev-icon {
+  background-color: #000000c4;
+    border-radius: 50%;
+    background-size: 15px;
+}
+
+span.carousel-control-next-icon[_ngcontent-jyp-c120], span.carousel-control-prev-icon[_ngcontent-jyp-c120] {
+    background-color: #000000c4;
+}
+
+a.carousel-control-prev {
+    height: fit-content;
+    width: auto;
+    left: 35px;
+    top: 38%;
+    // opacity: 1;
+}
+
+a.carousel-control-next {
+    height: fit-content;
+    width: auto;
+    right: 10px;
+    top: 38%;
+    // opacity: 1;
+}
+
+span.delete-icon {
+    background-color: white;
+    border-radius: 5px;
+}

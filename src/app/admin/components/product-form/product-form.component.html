@@ -1,0 +1,105 @@
+<div class="my-container">
+  <h1 class="text-center">Create New Product</h1>
+
+  <div class="row">
+    <form #f="ngForm" (ngSubmit)="onSave(f.value)" class="col-md-6" style="max-width: 500px;">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input #title="ngModel" [(ngModel)]="product.title" name="title" id="title" type="text" class="form-control form-control-sm"
+          required />
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="title.touched && title.invalid">
+          Title is <strong>required.</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subtitle">Subtitle</label>
+        <input #subtitle="ngModel" [(ngModel)]="product.subtitle" name="subtitle" id="subtitle" type="text" class="form-control form-control-sm"
+          required />
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="subtitle.touched && subtitle.invalid">
+          Subtitle is <strong>required.</strong>
+        </div>
+      </div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="price">Price</label>
+            <div class="input-group">
+              <div class="input-group-prepend" style="height: 31px;">
+                <span class="input-group-text">$</span>
+              </div>
+              <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="text" class="form-control form-control-sm"
+                required [numeric]='{"acceptValue":"NumericValueType.PositiveNumber","allowDecimal":"false"}' />
+            </div>
+            <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="price.touched && price.invalid">
+              <div *ngIf="price.errors.numeric"> Only positive <strong>numbers.</strong> </div>
+              <div *ngIf="price.errors.required"> Price is <strong>required.</strong> </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="stockQuantity">Stock Quantity</label>
+            <div class="input-group">
+              <input #stockQuantity="ngModel" [(ngModel)]="product.stockQuantity" name="stockQuantity" id="stockQuantity"
+                type="text" class="form-control form-control-sm" required
+                [numeric]='{"acceptValue":"NumericValueType.PositiveNumber","allowDecimal":"false"}' />
+            </div>
+            <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="stockQuantity.touched && stockQuantity.invalid">
+              <div *ngIf="stockQuantity.errors.numeric"> Only positive <strong>numbers.</strong> </div>
+              <div *ngIf="stockQuantity.errors.required"> Stock Quantity is <strong>required.</strong> </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea #description="ngModel" [(ngModel)]="product.description" name="description" id="description" type="text" rows="3"
+          class="form-control form-control-sm" required ></textarea>
+        <div  class="alert alert-danger p-0 mb-0" role="alert" *ngIf="description.touched && description.invalid">
+          Description is <strong>required.</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control form-control-sm"
+          required>
+          <option value=""></option>
+          <option *ngFor="let c of categories$ | async" [value]="c.id">
+            {{c.name}}
+          </option>
+        </select>
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="category.touched && category.invalid">
+          Category is <strong>required.</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subcategory">Subcategory</label>
+        <select #subcategory="ngModel" [(ngModel)]="product.subcategory" name="subcategory" id="subcategory" class="form-control form-control-sm"
+          required>
+          <option value=""></option>
+          <option *ngFor="let c of categories$ | async" [value]="c.id">
+            {{c.name}}
+          </option>
+        </select>
+        <div class="alert alert-danger p-0 mb-0" role="alert" *ngIf="subcategory.touched && subcategory.invalid">
+          Subcategory is <strong>required.</strong>
+        </div>
+      </div>
+
+      <app-file-update [imageList]="product.imagesUrls" (newItemEvent)="onFileChange($event)"></app-file-update>
+
+      <div class="form-group d-flex justify-content-between">
+        <button class="btn btn-dark mt-2 mb-2 " [disabled]="!f.form.valid">Save</button>
+        <button type="button" *ngIf="product.id" class="btn btn-outline-danger m-2" (click)="onDelete()"
+          [disabled]="!f.form.valid">Delete</button>
+      </div>
+    </form>
+
+    <div class="col-md-6" *ngIf="product.title">
+      <app-product-card [product]="product" justify-content-center class="row justify-content-center">
+      </app-product-card>
+    </div>
+
+  </div>
+</div>
